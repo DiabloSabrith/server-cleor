@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { CleorService } from './cleor.service';
 
 @Controller('cleor')
@@ -10,7 +10,7 @@ export class CleorController {
     return this.cleorService.getContentByIds(arrayIds);
   }
   @Get('content/:id')
-  async getContentBlocks(@Param('id') id: number) {
+  async getContentBlocks(@Param('id', ParseIntPipe) id: number) {
     return this.cleorService.getContentById(id);
   }
 }

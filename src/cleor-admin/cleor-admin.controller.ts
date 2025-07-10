@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   UploadedFile,
@@ -25,7 +26,10 @@ export class CleorAdminController {
   }
 
   @Put(':id')
-  async contentEditing(@Param('id') id: number, @Body() dto: UpadateDto) {
+  async contentEditing(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpadateDto,
+  ) {
     console.log('Дата пришла', dto);
     return this.cleorAdminService.contentEditing(id, dto);
   }
