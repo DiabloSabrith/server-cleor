@@ -13,13 +13,19 @@ import { extname } from 'path';
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express'; // ✅
 import { Express } from 'express'; // ✅
+import { CreateDTO } from './createContent.dto';
 
 @Controller('update')
 export class CleorAdminController {
   constructor(private readonly cleorAdminService: CleorAdminService) {}
 
+  @Post('create')
+  async createContent(@Body() dto: CreateDTO) {
+    return this.cleorAdminService.createContent(dto);
+  }
+
   @Put(':id')
-  async contentEditing(@Param('id') id: string, @Body() dto: UpadateDto) {
+  async contentEditing(@Param('id') id: number, @Body() dto: UpadateDto) {
     console.log('Дата пришла', dto);
     return this.cleorAdminService.contentEditing(id, dto);
   }
@@ -39,7 +45,7 @@ export class CleorAdminController {
     }),
   )
   async uploadImage(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @UploadedFile() file: Express.Multer.File,
   ) {
     const imageUrl = `http://localhost:8080/uploads/${file.filename}`;

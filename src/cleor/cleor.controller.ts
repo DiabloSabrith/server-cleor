@@ -4,14 +4,13 @@ import { CleorService } from './cleor.service';
 @Controller('cleor')
 export class CleorController {
   constructor(private readonly cleorService: CleorService) {}
-  @Get('content/many')
   async getContent(@Query('ids') ids: string) {
     console.log(ids, 'id блоков');
-    const arrayIds = ids.split(',');
+    const arrayIds = ids.split(',').map((id) => Number(id));
     return this.cleorService.getContentByIds(arrayIds);
   }
   @Get('content/:id')
-  async getContentBlocks(@Param('id') id: string) {
+  async getContentBlocks(@Param('id') id: number) {
     return this.cleorService.getContentById(id);
   }
 }
