@@ -15,9 +15,10 @@ async function bootstrap() {
 
     const port = process.env.PORT ? +process.env.PORT : 3000;
 
-    await app.listen(port);
+    await app.listen(port, '0.0.0.0'); // <-- слушать все интерфейсы
 
     console.log(`✅ Cleor Server is running on http://localhost:${port}`);
+    console.log(`Listening on port: ${port}`); // для Timeweb
   } catch (error) {
     console.error('❌ Error during bootstrap:', error);
     process.exit(1);
