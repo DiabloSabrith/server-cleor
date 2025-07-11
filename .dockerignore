@@ -1,0 +1,31 @@
+
+# .dockerignore
+node_modules
+.git
+.vscode
+*.md
+# dist ← УДАЛИТЬ эту строку, чтобы папка dist попала в образ
+# .dockerignore
+node_modules
+.git
+.vscode
+*.md
+# dist ← УДАЛИТЬ эту строку, чтобы папка dist попала в образ
+# .dockerignore
+node_modules
+.git
+.vscode
+*.md
+# dist ← УДАЛИТЬ эту строку, чтобы папка dist попала в образ
+# .dockerignore
+node_modules
+.git
+.vscode
+*.md
+# dist ← УДАЛИТЬ эту строку, чтобы папка dist попала в образ
+# .dockerignore
+node_modules
+.git
+.vscode
+*.md
+# dist ← УДАЛИТЬ эту строку, чтобы папка dist попала в образ

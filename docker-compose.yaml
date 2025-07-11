@@ -9,4 +9,4 @@ services:
       - '3000:3000'
     env_file:
       - .env
-    command: node dist/main
+    # command: node dist/main  ⛔️ лишнее, удалено

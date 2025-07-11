@@ -2,16 +2,18 @@ FROM node:18
 
 WORKDIR /app
 
+# Копируем только production-зависимости и собранный проект
 COPY package*.json ./
+COPY prisma ./prisma  # Если используете Prisma
 
-RUN npm install
+# Устанавливаем ТОЛЬКО production-зависимости (без devDependencies)
+RUN npm install --production
 
+# Копируем ВСЁ (включая dist, .env и остальное)
 COPY . .
 
-RUN npm run build
+# Применяем миграции Prisma (если нужно)
+RUN npx prisma generate
 
-COPY .env .   # копируем env в контейнер, если есть
-
-EXPOSE 3000
-
-CMD ["node", "dist/main"]
+# Запускаем приложение
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
