@@ -9,7 +9,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'), {
     prefix: '/uploads',
   });
-  await app.listen(process.env.PORT || 8080);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 /* Тоесть  по умолчанию создается INest =Aplications и поэтому некотрые вещи н еработают 

@@ -1,0 +1,8 @@
+name: cleor-server
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3000
+    command: node dist/main
