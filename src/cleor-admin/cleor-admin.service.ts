@@ -23,7 +23,7 @@ export class CleorAdminService {
   }
   async uploadsImage(id: number, imageUrl: string) {
     return this.prisma.contentlock.update({
-      where: { id },
+      where: { id: id },
       data: { imageUrl: imageUrl },
     });
   }
