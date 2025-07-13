@@ -52,7 +52,7 @@ export class CleorAdminController {
     @Param('id') id: number,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    const imageUrl = `http://localhost:8080/uploads/${file.filename}`;
+    const imageUrl = `http://147.45.215.103:3000/uploads/${file.filename}`;
     return this.cleorAdminService.uploadsImage(id, imageUrl);
   }
 }
