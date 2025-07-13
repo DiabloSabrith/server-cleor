@@ -49,7 +49,7 @@ export class CleorAdminController {
     }),
   )
   async uploadImage(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @UploadedFile() file: Express.Multer.File,
   ) {
     const imageUrl = `http://147.45.215.103:3000/uploads/${file.filename}`;
