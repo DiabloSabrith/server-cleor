@@ -8,18 +8,26 @@ import { AuthDto } from './auth.dto';
 import { argon2d, hash, verify } from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Users } from '@prisma/client';
+import { Response } from 'express';
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private jwt: JwtService,
   ) {}
-  async login(dto: AuthDto) {
+  async login(dto: AuthDto, res: Response) {
     const user = await this.validateUser(dto);
     const tokens = await this.issueTokens(user.id);
+
+    res.cookie('refreshToken', tokens.refreshTokens, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     return {
       user: this.returnUserFields(user),
-      ...tokens,
+      accessToken: tokens.accessTokens,
     };
   }
   /* TODO  validate user */
@@ -36,7 +44,7 @@ export class AuthService {
     return user;
   }
   /* TODO register */
-  async register(dto: AuthDto) {
+  async register(dto: AuthDto, res: Response) {
     const oldUser = await this.prisma.users.findUnique({
       where: {
         email: dto.email,
@@ -51,9 +59,15 @@ export class AuthService {
       },
     });
     const tokens = await this.issueTokens(user.id);
+    res.cookie('refreshToken', tokens.refreshTokens, {
+      httpOnly: true,
+      secure: false, // использовать только по HTTPS
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 дней
+    });
     return {
       user: this.returnUserFields(user),
-      ...tokens,
+      accessToken: tokens.accessTokens,
     };
   }
   /* TODO  выпуск токенов на осенове id user */
