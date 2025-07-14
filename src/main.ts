@@ -8,7 +8,8 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.enableCors({
-      origin: '*',
+      origin: 'http://localhost:3000',
+      credentials: true,
     });
 
     app.useStaticAssets(join(__dirname, '..', '..', 'uploads'), {
