@@ -22,7 +22,7 @@ export class AuthService {
     res.cookie('refreshToken', tokens.refreshTokens, {
       httpOnly: true,
       secure: false,
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return {
@@ -62,7 +62,7 @@ export class AuthService {
     res.cookie('refreshToken', tokens.refreshTokens, {
       httpOnly: true,
       secure: false, // использовать только по HTTPS
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 дней
     });
     return {
