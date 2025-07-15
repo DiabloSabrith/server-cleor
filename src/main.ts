@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { join } from 'path';
+import { resolve } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
@@ -12,16 +12,17 @@ async function bootstrap() {
       credentials: true,
     });
 
-    app.useStaticAssets(join(__dirname, '..', '..', 'uploads'), {
+    // ✅ Абсолютный путь к uploads — важно!
+    app.useStaticAssets(resolve('uploads'), {
       prefix: '/uploads',
     });
 
     const port = process.env.PORT ? +process.env.PORT : 3000;
 
-    await app.listen(port, '0.0.0.0'); // <-- слушать все интерфейсы
+    await app.listen(port, '0.0.0.0');
 
     console.log(`✅ Cleor Server is running on http://localhost:${port}`);
-    console.log(`Listening on port: ${port}`); // для Timeweb
+    console.log(`Listening on port: ${port}`);
   } catch (error) {
     console.error('❌ Error during bootstrap:', error);
     process.exit(1);
