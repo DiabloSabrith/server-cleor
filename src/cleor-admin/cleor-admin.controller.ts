@@ -53,6 +53,8 @@ export class CleorAdminController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     const imageUrl = `https://cleor.ru/uploads/${file.filename}`;
+    console.log('🖼 Генерирую imageUrl:', imageUrl);
+
     return this.cleorAdminService.uploadsImage(id, imageUrl);
   }
 }
