@@ -9,11 +9,11 @@ export class CleorService {
       where: { id: id },
     });
   }
-  async getContentByIds(ids: number[]) {
+  async getContentByIds(arrayIds: number[]) {
     return this.prisma.contentlock.findMany({
       where: {
         id: {
-          in: ids,
+          in: arrayIds,
         },
       },
     });
