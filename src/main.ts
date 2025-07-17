@@ -8,7 +8,10 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.enableCors({
-      origin: 'https://cleor-admin-98pi.vercel.app',
+      origin: [
+        'https://cleor-admin-98pi.vercel.app',
+        'https://cleor-wwm8.vercel.app',
+      ],
       credentials: true,
     });
 
