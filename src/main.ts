@@ -11,6 +11,7 @@ async function bootstrap() {
       origin: [
         'https://cleor-admin-98pi.vercel.app',
         'https://cleor-tsf.vercel.app',
+        'http://localhost:3000',
       ],
       credentials: true,
     });
