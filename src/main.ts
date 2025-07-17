@@ -10,7 +10,7 @@ async function bootstrap() {
     app.enableCors({
       origin: [
         'https://cleor-admin-98pi.vercel.app',
-        'https://cleor-wwm8.vercel.app',
+        'https://cleor-tsf.vercel.app',
       ],
       credentials: true,
     });
