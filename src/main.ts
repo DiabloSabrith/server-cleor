@@ -10,12 +10,11 @@ async function bootstrap() {
     app.enableCors({
       origin: [
         'https://cleor-admin-jn8y.vercel.app',
-        'https://cleor-tsf.vercel.app',
+        'https://cleor-site-pro.vercel.app',
       ],
       credentials: true,
     });
 
-    // ✅ Абсолютный путь к uploads — важно!
     app.useStaticAssets(resolve('uploads'), {
       prefix: '/uploads',
     });

@@ -21,7 +21,7 @@ export class AuthService {
 
     res.cookie('refreshToken', tokens.refreshTokens, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -61,7 +61,7 @@ export class AuthService {
     const tokens = await this.issueTokens(user.id);
     res.cookie('refreshToken', tokens.refreshTokens, {
       httpOnly: true,
-      secure: false, // использовать только по HTTPS
+      secure: true,
       sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 дней
     });
